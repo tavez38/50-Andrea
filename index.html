@@ -9,10 +9,10 @@
     <style>
         :root {
             --bg-color: #050a15;
-            --card-bg: rgba(11, 19, 43, 0.85); /* Deep Navy */
-            --primary-silver: #d4d4d4; /* Brighter silver */
-            --light-silver: #f5f5f5;
-            --accent-silver: #a3a3a3;
+            --card-bg: rgba(15, 25, 55, 0.85); /* Leggermente più chiaro per contrasto */
+            --primary-silver: #e0e0e0; /* Argento molto più acceso */
+            --light-silver: #ffffff;
+            --accent-silver: #c0c0c0;
             --text-main: #f0f4f8;
             --text-secondary: #b0bec5;
         }
@@ -25,7 +25,7 @@
 
         body {
             font-family: 'Montserrat', sans-serif;
-            background: linear-gradient(135deg, #050a15 0%, #0b132b 50%, #151e32 100%);
+            background: linear-gradient(135deg, #071022 0%, #111d3b 50%, #1a2a50 100%);
             color: var(--text-main);
             min-height: 100vh;
             display: flex;
@@ -33,17 +33,73 @@
             justify-content: center;
             overflow-x: hidden;
             background-attachment: fixed;
+            position: relative;
         }
 
-        /* Subtle background pattern/overlay for elegance */
-        body::before {
-            content: '';
+        /* Decorazioni di Festa - Coriandoli e Stelle Argentate fluttuanti */
+        .decorations {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(circle at center, rgba(212, 212, 212, 0.05) 0%, transparent 70%);
             pointer-events: none;
             z-index: 0;
+            overflow: hidden;
         }
+
+        .confetti {
+            position: absolute;
+            background: var(--primary-silver);
+            opacity: 0.6;
+            animation: float-up 10s linear infinite;
+        }
+
+        .confetti:nth-child(even) {
+            background: var(--light-silver);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        .confetti.circle {
+            border-radius: 50%;
+        }
+
+        .confetti.ribbon {
+            width: 4px;
+            height: 25px;
+            border-radius: 2px;
+            transform: rotate(45deg);
+        }
+
+        .confetti.star {
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        }
+
+        @keyframes float-up {
+            0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.9; }
+            90% { opacity: 0.9; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Generazione di posizioni e ritardi casuali per dare naturalezza all'effetto */
+        .c1 { left: 10%; width: 8px; height: 8px; animation-delay: 0s; animation-duration: 12s; }
+        .c2 { left: 20%; animation-delay: 2s; animation-duration: 15s; }
+        .c3 { left: 30%; width: 12px; height: 12px; animation-delay: 4s; animation-duration: 10s; }
+        .c4 { left: 45%; animation-delay: 1s; animation-duration: 14s; }
+        .c5 { left: 55%; width: 10px; height: 10px; animation-delay: 5s; animation-duration: 11s; }
+        .c6 { left: 65%; animation-delay: 3s; animation-duration: 13s; }
+        .c7 { left: 75%; width: 15px; height: 15px; animation-delay: 0.5s; animation-duration: 16s; }
+        .c8 { left: 85%; animation-delay: 6s; animation-duration: 12s; }
+        .c9 { left: 95%; width: 6px; height: 6px; animation-delay: 2.5s; animation-duration: 14s; }
+        .c10 { left: 5%; width: 14px; height: 14px; animation-delay: 1.5s; animation-duration: 13s; }
+        .c11 { left: 15%; animation-delay: 4.5s; animation-duration: 16s; }
+        .c12 { left: 25%; width: 7px; height: 7px; animation-delay: 0.2s; animation-duration: 11s; }
+        .c13 { left: 35%; animation-delay: 7s; animation-duration: 14s; }
+        .c14 { left: 45%; width: 11px; height: 11px; animation-delay: 3.5s; animation-duration: 12s; }
+        .c15 { left: 55%; animation-delay: 2.2s; animation-duration: 15s; }
+        .c16 { left: 65%; width: 9px; height: 9px; animation-delay: 5.5s; animation-duration: 13s; }
+        .c17 { left: 75%; animation-delay: 1.8s; animation-duration: 17s; }
+        .c18 { left: 85%; width: 13px; height: 13px; animation-delay: 4.2s; animation-duration: 10s; }
+        .c19 { left: 95%; animation-delay: 6.5s; animation-duration: 14s; }
+        .c20 { left: 50%; width: 16px; height: 16px; animation-delay: 0.8s; animation-duration: 15s; }
 
         .container {
             width: 100%;
@@ -67,48 +123,81 @@
 
         .card {
             background: var(--card-bg);
-            border: 1px solid rgba(212, 212, 212, 0.15);
+            /* Bordi più accesi, spessi e visibili */
+            border: 2px solid rgba(224, 224, 224, 0.5); 
             border-radius: 20px;
             padding: 50px 40px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(212, 212, 212, 0.05);
+            /* Ombreggiatura "glow" molto più luminosa attorno al form */
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 
+                        0 0 35px rgba(224, 224, 224, 0.3), 
+                        inset 0 0 15px rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             text-align: center;
+            position: relative;
+        }
+
+        /* Accenti Eleganti negli angoli (Stile Cornice Party) */
+        .card::before, .card::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 3px solid var(--primary-silver);
+            opacity: 0.7;
+            pointer-events: none;
+            box-shadow: 0 0 15px rgba(255,255,255,0.4);
+        }
+
+        .card::before {
+            top: 15px; left: 15px;
+            border-bottom: none;
+            border-right: none;
+            border-radius: 12px 0 0 0;
+        }
+
+        .card::after {
+            bottom: 15px; right: 15px;
+            border-top: none;
+            border-left: none;
+            border-radius: 0 0 12px 0;
         }
 
         h1, h2 {
             font-family: 'Playfair Display', serif;
-            color: var(--primary-silver);
-            font-weight: 400;
+            color: var(--light-silver);
+            font-weight: 600; /* Font un po' più bold per dare risalto */
         }
 
         h1 {
             font-size: 3.8rem;
             margin-bottom: 25px;
             letter-spacing: 2px;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+            /* Effetto testo luminoso argento */
+            text-shadow: 0 0 15px rgba(224, 224, 224, 0.4), 2px 2px 8px rgba(0,0,0,0.8);
         }
 
         h2 {
             font-size: 2.8rem;
             margin-bottom: 40px;
-            border-bottom: 1px solid rgba(212, 212, 212, 0.2);
+            border-bottom: 2px solid rgba(224, 224, 224, 0.4);
             padding-bottom: 20px;
             display: inline-block;
+            text-shadow: 0 0 10px rgba(224, 224, 224, 0.2);
         }
 
         p {
             font-size: 1.15rem;
             line-height: 1.8;
-            color: var(--text-secondary);
+            color: var(--text-main);
             margin-bottom: 25px;
         }
 
         .btn {
             display: inline-block;
-            background: transparent;
-            color: var(--primary-silver);
-            border: 1px solid var(--primary-silver);
+            background: rgba(224, 224, 224, 0.05);
+            color: var(--light-silver);
+            border: 2px solid var(--primary-silver);
             padding: 16px 45px;
             font-size: 1.1rem;
             text-transform: uppercase;
@@ -118,10 +207,10 @@
             text-decoration: none;
             transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
             margin-top: 25px;
-            font-weight: 500;
+            font-weight: 600;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 0 20px rgba(224, 224, 224, 0.2);
         }
 
         .btn::before {
@@ -129,7 +218,7 @@
             position: absolute;
             top: 0; left: -100%;
             width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(212, 212, 212, 0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
             transition: left 0.4s ease;
         }
 
@@ -138,22 +227,24 @@
         }
 
         .btn:hover {
-            background: var(--primary-silver);
+            background: var(--light-silver);
             color: var(--bg-color);
-            box-shadow: 0 0 25px rgba(212, 212, 212, 0.4);
+            box-shadow: 0 0 30px rgba(224, 224, 224, 0.7);
             transform: translateY(-3px);
+            border-color: var(--light-silver);
         }
 
         .btn-primary {
             background: var(--primary-silver);
             color: var(--bg-color);
             border: none;
-            font-weight: 600;
+            font-weight: 700;
+            box-shadow: 0 0 25px rgba(224, 224, 224, 0.5);
         }
 
         .btn-primary:hover {
             background: var(--light-silver);
-            box-shadow: 0 0 30px rgba(212, 212, 212, 0.6);
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.8);
         }
 
         /* Details List */
@@ -171,25 +262,27 @@
             align-items: flex-start;
             margin-bottom: 25px;
             font-size: 1.15rem;
-            background: rgba(0, 0, 0, 0.25);
+            background: rgba(255, 255, 255, 0.08); /* Sfondo voce info più brillante */
             padding: 20px 25px;
             border-radius: 15px;
-            border-left: 4px solid var(--primary-silver);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
+            border-left: 4px solid var(--light-silver);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2), inset 0 0 10px rgba(224, 224, 224, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .info-item:hover {
             transform: translateX(5px);
-            background: rgba(0, 0, 0, 0.35);
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3), inset 0 0 15px rgba(224, 224, 224, 0.2);
         }
 
         .info-icon {
             font-size: 1.6rem;
             margin-right: 20px;
-            color: var(--primary-silver);
+            color: var(--light-silver);
             min-width: 35px;
             text-align: center;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
         }
 
         .info-content strong {
@@ -202,18 +295,18 @@
         }
         
         .info-content span {
-            color: var(--text-secondary);
+            color: var(--text-main);
             font-size: 1.05rem;
             line-height: 1.5;
         }
 
         .highlight-bar {
-            color: #e0e0e0;
+            color: #ffffff;
             font-weight: 700 !important;
             font-size: 1.25rem !important;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            text-shadow: 0 0 15px rgba(212, 212, 212, 0.3);
+            letter-spacing: 1.5px;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
         }
 
         /* Map */
@@ -221,8 +314,8 @@
             margin: 40px 0;
             border-radius: 15px;
             overflow: hidden;
-            border: 1px solid rgba(212, 212, 212, 0.2);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+            border: 2px solid rgba(224, 224, 224, 0.4);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4), 0 0 25px rgba(224, 224, 224, 0.2);
         }
 
         iframe {
@@ -241,28 +334,28 @@
             max-width: 100%;
             height: auto;
             border-radius: 15px;
-            border: 1px solid rgba(212, 212, 212, 0.3);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            border: 2px solid rgba(224, 224, 224, 0.4);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 25px rgba(224, 224, 224, 0.2);
             transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
         
         .menu-img:hover {
             transform: scale(1.03);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.6), 0 0 35px rgba(224, 224, 224, 0.4);
         }
 
         /* RSVP Section */
         .rsvp-box {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px dashed rgba(212, 212, 212, 0.4);
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px dashed rgba(224, 224, 224, 0.6);
             padding: 35px 25px;
             border-radius: 20px;
             margin-bottom: 40px;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+            box-shadow: inset 0 0 25px rgba(255, 255, 255, 0.08);
         }
 
         .rsvp-alert {
-            color: #ffb8b8;
+            color: #ffcccc;
             font-weight: 500;
             font-size: 1.15rem;
             margin-bottom: 25px;
@@ -270,8 +363,9 @@
         }
         
         .rsvp-alert strong {
-            color: #ffcdcd;
+            color: #ffffff;
             font-weight: 700;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
         }
 
         /* Responsive */
@@ -284,7 +378,7 @@
                 text-align: center; 
                 align-items: center; 
                 border-left: none; 
-                border-top: 4px solid var(--primary-silver); 
+                border-top: 4px solid var(--light-silver); 
             }
             .info-item:hover {
                 transform: translateY(-5px);
@@ -292,17 +386,44 @@
             .info-icon { margin-right: 0; margin-bottom: 15px; font-size: 2rem;}
             .btn { width: 100%; box-sizing: border-box; padding: 18px 20px; font-size: 1rem;}
             iframe { height: 300px; }
+            /* Riduce l'opacità dei decori su mobile per mantenere leggibilità ma senza rimuoverli */
+            .decorations { opacity: 0.5; } 
         }
     </style>
 </head>
 <body>
 
+    <!-- Sfondo Festivo - Elementi Fluttuanti Argentati -->
+    <div class="decorations">
+        <div class="confetti circle c1"></div>
+        <div class="confetti ribbon c2"></div>
+        <div class="confetti star c3"></div>
+        <div class="confetti circle c4"></div>
+        <div class="confetti ribbon c5"></div>
+        <div class="confetti star c6"></div>
+        <div class="confetti circle c7"></div>
+        <div class="confetti ribbon c8"></div>
+        <div class="confetti star c9"></div>
+        <div class="confetti circle c10"></div>
+        <div class="confetti ribbon c11"></div>
+        <div class="confetti star c12"></div>
+        <div class="confetti circle c13"></div>
+        <div class="confetti ribbon c14"></div>
+        <div class="confetti star c15"></div>
+        <div class="confetti circle c16"></div>
+        <div class="confetti ribbon c17"></div>
+        <div class="confetti star c18"></div>
+        <div class="confetti circle c19"></div>
+        <div class="confetti ribbon c20"></div>
+    </div>
+
     <div class="container">
         <!-- SEZIONE 1: HOME -->
         <section id="home" class="section active">
             <div class="card">
-                <p style="text-transform: uppercase; letter-spacing: 4px; font-size: 0.95rem; color: var(--accent-silver); margin-bottom: 15px;">Invito Esclusivo</p>
-                <h1>50esimo di Mango</h1>
+                <p style="text-transform: uppercase; letter-spacing: 4px; font-size: 1rem; color: var(--light-silver); margin-bottom: 15px; font-weight: 600; text-shadow: 0 0 10px rgba(255,255,255,0.5);">🎉 Invito Speciale 🎉</p>
+                <h1 style="font-size: 70px; text-align: center; margin-bottom: -10px;"><p style="display: inline-block; font-size: 90px;">50</p><span style="font-size: 0.45em; font-weight: 400; letter-spacing: 1px; opacity: 0.9;">esimo</span> 
+                    <span style="font-size: 0.55em; font-weight: 300;  opacity: 0.8;">di</span> Mango</h1>
                 <p>Sei invitato/a a celebrare con noi un traguardo indimenticabile.<br>Unisciti a noi per una serata all'insegna di festa, buon cibo e ottima compagnia.</p>
                 <button class="btn" onclick="navigate('details')">Scopri i dettagli della festa</button>
             </div>
@@ -329,9 +450,9 @@
                         </div>
                     </li>
                     <li class="info-item">
-                        <div class="info-icon">🍸</div>
+                        <div class="info-icon">🥂</div>
                         <div class="info-content">
-                            <strong class="highlight-bar">Sarà presente l'Open Bar!</strong>
+                            <strong class="highlight-bar">Sarà presente l'Open Bar! 🎈</strong>
                         </div>
                     </li>
                     <li class="info-item">
@@ -360,7 +481,7 @@
                     <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYZHErjGuokee7lETJJl4te444_mDIm9gGnIWCE26gnJAxTA/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Conferma la tua presenza</a>
                 </div>
 
-                <button class="btn" style="font-size: 0.95rem; padding: 12px 30px; border-color: rgba(212, 212, 212, 0.4);" onclick="navigate('home')">← Torna all'inizio</button>
+                <button class="btn" style="font-size: 0.95rem; padding: 12px 30px; border-color: rgba(224, 224, 224, 0.4);" onclick="navigate('home')">← Torna all'inizio</button>
             </div>
         </section>
     </div>
